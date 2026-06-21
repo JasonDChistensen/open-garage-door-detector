@@ -38,7 +38,7 @@ In Home Assistant, an automation is configured to detect when the garage door is
   - FeatherWing SCL
 
 
-![Open Garage Door Detector](images/open-garage-door-detector_blurred.jpg)
+![Open Garage Door Detector](images/open-garage-door-detector.jpg)
 ![ESP32S3](images/ESP32S3.png)
 
 
@@ -55,7 +55,7 @@ A function is called periodically that does the following:
 ## Automation
 An automation was created in Home Assistant.  If if 5 minutes has elapsed and the distance measurement is below 100 cm it will send a notification to my phone.  The notification is then sent every 5 minutes as long as the distance measurement is below 100 cm.
 
-![Automation](images/open-garage-door-detector_blurred.jpg)
+![Automation](images/automation.jpg)
 
 
   
