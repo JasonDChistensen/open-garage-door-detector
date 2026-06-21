@@ -38,7 +38,7 @@ In Home Assistant, an automation is configured to detect when the garage door is
   - FeatherWing SCL
 
 
-![Open Garage Door Detector](images/open-garage-door-detector.jpg)
+![Open Garage Door Detector](images/open-garage-door-detector_blurred.jpg)
 ![ESP32S3](images/ESP32S3.png)
 
 
