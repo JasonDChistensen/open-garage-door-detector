@@ -1,0 +1,62 @@
+esphome:
+  name: garage-door-checker
+  friendly_name: Garage Door Checker
+  platformio_options:
+    board: seeed_xiao_esp32s3
+    build_flags: "-DBOARD_HAS_PSRAM"
+    board_build.arduino.memory_type: "qio_opi"
+
+    # 1. Keep your version locks intact
+    lib_deps:
+    - adafruit/Adafruit BusIO@1.17.4
+    - adafruit/Adafruit IS31FL3731 Library@^2.0.2
+    - adafruit/Adafruit GFX Library@^1.12.6
+    - adafruit/Adafruit_VL53L0X@^1.2.5
+
+    # 2. FORCE Deep parsing so custom folders map the Adafruit headers
+    lib_ldf_mode: deep+
+
+esp32:
+  board: seeed_xiao_esp32s3 #https://registry.platformio.org/platforms/platformio/espressif32/boards
+  framework:
+    type: arduino
+
+psram:
+  mode: octal
+  speed: 80MHz
+
+# Loads your local Python/C++ files from the subfolders
+external_components:
+  - source:
+      type: local
+      path: my_custom_components
+
+# Enable logging
+logger:
+  level: DEBUG # Allows tracking the component lifecycle safely
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "deadbeaf"
+
+ota:
+  - platform: esphome
+    password: "deadbeaf"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Garage-Door-Checker"
+    password: "deadbeaf"
+
+captive_portal:
+
+# Instantiated as a sensor platform
+sensor:
+  - platform: periodic_worker
+    name: "Calculated Distance Traveled"
+    update_interval: 5s
